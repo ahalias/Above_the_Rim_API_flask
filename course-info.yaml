@@ -1,0 +1,14 @@
+type: hyperskill
+title: Above the Rim API
+language: English
+summary: "<p>As a huge basketball fan, you host the local sports news site\_<em>Above\
+  \ the Rim</em>\_on the school's website. You don't have any problems with publishing\
+  \ the NBA or European league because they are available, but the varsity league\
+  \ results are hard to find. That's why you decided to create an API where other\
+  \ enthusiasts like you can post games result right after a match is over!</p><br/><br/>Learn\
+  \ more at <a href=\"https://hyperskill.org/projects/336?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card\"\
+  >https://hyperskill.org/projects/336</a>"
+programming_language: Python
+content:
+- Above the Rim API
+mode: Study

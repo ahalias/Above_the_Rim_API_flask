@@ -1,0 +1,6 @@
+https://github.com/hyperskill/hs-test-python/archive/release.tar.gz
+pip==23.0.1
+flask==2.2.3
+bs4==0.0.1
+requests==2.28.2
+flask_sqlalchemy

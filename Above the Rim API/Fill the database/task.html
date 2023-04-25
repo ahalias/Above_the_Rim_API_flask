@@ -1,0 +1,41 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>The time has come to feed the database with team names and abbreviations. Use the <code class="java">POST</code> method for this. You have decided to provide the <code class="java">GET</code> method with the possibility of obtaining all team names in the JSON format so that everyone can use this data in their systems and websites.</p>
+<p>Since you want to continue developing your API in the future, you've decided to number its versions now.</p>
+<h5 id="objectives">Objectives</h5>
+<ol>
+<li>Extend the home page in HTML with two <code class="java">&lt;p&gt;</code> paragraphs: <code class="java">/api/v1/teams GET all teams</code> and <code class="java">/api/v1/teams POST add team</code>.</li>
+<li>Implement the <code class="java">POST</code> method at <code class="java">/api/v1/teams</code> that will add a new team to the database after a JSON object is passed. The JSON object should be in the format:
+	<pre><code class="java">{"short": &lt;SHORT&gt;, "name": &lt;NAME&gt;}</code></pre>
+</li>
+<li>If you successfully add a record to the database, the response should be as below with the status code of <code class="java">201</code>. 
+	<pre><code class="java">{ "success": true,  "data": "Team added"}</code></pre>
+</li>
+<li>There is no need to validate the data;</li>
+<li>Implement the <code class="java">GET</code> method <code class="java">/api/v1/teams</code> that collects all the data from the <code class="java">TEAMS</code> table and returns it in JSON format with the status code of <code class="java">200</code>.</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>the response for the home page should look like this.</em></p>
+<h1 id="welcome-to-the-above-the-rim-api">Welcome to the "Above the Rim" API!</h1>
+<p><em>/api/v1/teams GET all teams</em></p>
+<p><em>/api/v1/teams POST add team</em></p>
+<p><strong>Example 2:</strong> <em>Response for a POST at /api/v1/teams</em></p>
+<p><code class="java">POST</code>:</p>
+<pre><code class="java">{
+"short": "PRW",
+"name": "Prague Wizards"},
+}</code></pre>
+<p>Response:</p>
+<pre><code class="java">{
+    "data": "Team has been added",
+    "success": true
+}</code></pre>
+<p><strong>Example 3:</strong> <em>response for a GET at /api/v1/teams</em></p>
+<pre><code class="java">{
+    "success": true,
+    "data": {
+        "CHG": "Chicago Gulls",
+        "PRW": "Prague Wizards",
+    }
+}</code></pre>
+</div>

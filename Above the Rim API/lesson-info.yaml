@@ -1,0 +1,8 @@
+type: framework
+content:
+- Welcome
+- Fill the database
+- Add the results
+- Stats
+- Ver 2.0
+current_task: 4

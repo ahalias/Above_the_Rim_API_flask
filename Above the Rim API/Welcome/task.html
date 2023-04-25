@@ -1,0 +1,44 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>You and your friends are huge basketball fans. Some of you are varsity players, but as a group of enthusiasts, you edit local online information services in schools. Unfortunately, there are no TV broadcasts at this level of competition, and no major website publishes the final results. To find out what the result is, you must either write to or call your colleagues. You decided to change it and run the API so that each of your teammates can submit the result after the match is over, and others can check it at any time.</p>
+<h5 id="objectives">Objectives</h5>
+<ol>
+<li>On the home page, return a greeting with the  <code class="java">&lt;h1&gt;</code> header: <code class="java">Welcome to the "Above the Rim" API!</code> The service should return the status code of <code class="java">200</code>;</li>
+<li>Handle the <code class="java">404</code> error and return the JSON object with the status code <code class="java">404</code>.
+	<pre><code class="java">{"success": False, "data": "Wrong address"}</code></pre>
+</li>
+<li>Create the SQLite3 database <em>db.sqlite3</em> with the table <code class="java">teams</code> and columns:</li>
+</ol>
+<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td><strong>Column</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Attributes</strong></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>Integer</td>
+<td>Primary Key</td>
+</tr>
+<tr>
+<td>SHORT</td>
+<td>String(3)</td>
+<td>Unique, Not null</td>
+</tr>
+<tr>
+<td>NAME </td>
+<td>String(50)</td>
+<td>Unique, Not null</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>The response for the home page should be HTML text in <code class="java">&lt;h1&gt;</code> tag.</em></p>
+<h1 id="welcome-to-the-above-the-rim-api">Welcome to the "Above the Rim" API!</h1>
+<p> </p>
+<p><strong>Example 2:</strong> <em>Response for a GET to a wrong address should return a JSON object.</em></p>
+<pre><code class="java">{"success": False, "data": "Wrong address"}</code></pre>
+
+</div>

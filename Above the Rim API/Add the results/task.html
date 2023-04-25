@@ -1,0 +1,125 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>It's time to implement the game API.</p>
+<h5 id="objectives">Objectives</h5>
+<ol>
+<li>Extend the home page in HTML with two paragraphs: <code class="language-json">/api/v1/games GET all games</code> and <code class="language-json">/api/v1/games POST add game</code>.</li>
+<li>Create a table <code class="language-json">games</code> in the database: 
+	<ol>
+<li>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td>Column</td>
+<td>Type</td>
+<td> </td>
+</tr>
+<tr>
+<td>
+<p>ID</p>
+</td>
+<td>
+<p>Integer</p>
+</td>
+<td>
+<p>Primary key</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>HOME_TEAM</p>
+</td>
+<td>
+<p>Integer</p>
+</td>
+<td>
+<p>Foreign Key - teams.id</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>VISITING_TEAM</p>
+</td>
+<td>
+<p>Integer</p>
+</td>
+<td>
+<p>Foreign Key - teams.id</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>HOME_TEAM_SCORE</p>
+</td>
+<td>
+<p>Integer</p>
+</td>
+<td>
+<p> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p>VISTING_TEAM_SCORE</p>
+</td>
+<td>
+<p>Integer</p>
+</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+</li>
+</ol>
+</li>
+<li>Implement the <code class="language-json">POST</code> method at <code class="language-json">/api/v1/games</code> that will add a new game to the database after a JSON object is passed. The JSON object should be in the format:
+	<pre><code class="language-no-highlight">{
+"home_team": &lt;SHORT&gt;, "visiting_team": &lt;SHORT&gt;, 
+"home_team_score": &lt;HOME_TEAM_SCORE&gt;, "visiting_team_score": &lt;VISTING_TEAM_SCORE&gt;
+}</code></pre>
+</li>
+<li>If you successfully add a record to the database, the response should be as below with the status code of <code class="language-json">201</code>. 
+	<pre><code class="language-no-highlight">{"success": true, "data": "Team has been added"}</code></pre>
+</li>
+<li>If the shortcut for the team name doesn't exist in <code class="language-json">teams</code>, table returns the JSON object as below with the status code of <code class="language-json">400</code>.
+	<pre><code class="language-no-highlight">{"success": False, "data": "Wrong team short"}</code></pre>
+</li>
+<li>Implement the <code class="language-json">GET</code> method at <code class="language-json">/api/v1/games</code> that collects all the data from the <code class="language-json">GAMES</code> table and returns it in JSON format with the status code of <code class="language-json">200</code>, just like in the example. The key value of the games is <code class="language-json">ID</code> from the <code class="language-json">games</code> table.</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>the response for the home page should look like this.</em></p>
+<h1 id="welcome-to-the-above-the-rim-api">Welcome to the "Above the Rim" API!</h1>
+<p>/api/v1/teams GET all teams</p>
+<p>/api/v1/teams POST add team</p>
+<p>/api/v1/games GET all games</p>
+<p>/api/v1/games POST add game</p>
+<p><strong>Example 2:</strong> <em>response for a POST at /api/v1/games</em></p>
+<p><code class="language-json">POST</code>:</p>
+<pre><code class="language-json">{
+"home_team": "CHG", "visiting_team": "PRW",
+"home_team_score": 123, "visiting_team_score": 89
+}</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+    "data": "Game has been added",
+    "success": true
+}</code></pre>
+<p><strong>Example 3: </strong><em>response for a<strong> </strong>POST at /api/v1/games if the shortcut name is wrong</em></p>
+<p><code class="language-json">POST</code>:</p>
+<pre><code class="language-json">{
+"home_team": "XYZ", "visiting_team": "PRW",
+"home_team_score": 123, "visiting_team_score": 89
+}</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+    "data": "Wrong team short",
+    "success": false
+}</code></pre>
+<p><strong>Example 4:</strong> <em>response for a GET at /api/v1/games</em></p>
+<pre><code class="language-json">{
+"success": true,
+"data": {"1": "Chicago Gulls 123:89 Prague Wizards",
+         "2": "Prague Wizards 76:67 Chicago Gulls"}
+}</code></pre>
+</div>

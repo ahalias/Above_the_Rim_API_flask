@@ -1,0 +1,71 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Let's add the statistics of your favorite teams. In this stage, provide the option to query the API with the single team stats. You will also introduce small check security against adding the team name abbreviation in the wrong format.</p>
+<h5 id="objectives">Objectives</h5>
+<ol>
+<li>Extend the home page in HTML with a paragraph: <code class="language-json">/api/v1/team/%SHORT% GET a team statistics</code>.</li>
+<li>Implement the <code class="language-json">GET</code> method at <code class="language-json">/api/v1/team/&lt;SHORT&gt;</code> that will return the JSON object with the statistics for the chosen team with the status code of <code class="language-json">200</code> in the format: 
+	<pre><code class="language-json">{
+"success": true, 
+"data":
+       {
+        "name": &lt;NAME&gt;,
+        "short": &lt;SHORT&gt;,
+        "win": &lt;NUMEBR OF WINS AS INTEGER&gt;,
+        "lost": &lt;NUMBER OF LOSTS AS INTEGER&gt;}
+       }
+}</code></pre>
+</li>
+<li>If the team with this <code class="language-json">SHORT</code> doesn't exist in the database, return JSON with the code of <code class="language-json">400</code>.
+	<pre><code class="language-json">{
+"success": false,
+"data": "Wrong short format"
+}</code></pre>
+</li>
+<li>In the <code class="language-json">POST</code> method at <code class="language-json">/api/v1/teams</code>, implement a mechanism that checks whether the <code class="language-json">short</code> for the added team has a proper format: three capital letters. If it is not, return the JSON object with the status code of <code class="language-json">400</code>. 
+	<pre><code class="language-json">{
+"success": false,
+"data": "Wrong short format"
+}</code></pre>
+</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>the response for the home page should look like this.</em></p>
+<h1 id="welcome-to-the-above-the-rim-api">Welcome to the "Above the Rim" API!</h1>
+<p>/api/v1/teams GET all teams</p>
+<p>/api/v1/teams POST add team</p>
+<p>/api/v1/games GET all games</p>
+<p>/api/v1/games POST add game</p>
+<p>/api/v1/team/%SHORT% GET a team statistics</p>
+<p><strong>Example 2:</strong> <em>response for a GET at /api/v1/team/&lt;SHORT&gt;</em></p>
+<pre><code class="language-json">{
+"success": true,
+"data":
+       {
+        "name": "Prague Wizards",
+        "short": "PRW",
+        "win": 1,
+         "lost": 1
+        }
+}</code></pre>
+<p><strong> Example 3:</strong> <em>response for a GET with the team's wrong short name</em></p>
+<pre><code class="language-json">{
+    "success": false,
+    "data": "There is no team &lt;SHORT&gt;"
+}</code></pre>
+<p><strong>Example 4: </strong><em>response for a<strong> </strong>POST at /api/v1/teams when the shortcut name has the incorrect format</em></p>
+<p><code class="language-json">POST</code>:</p>
+<pre><code class="language-json">{
+"short": "PRw",
+"name": "Prague Wizards"},
+}</code></pre>
+<pre><code class="language-json">{
+"short": "PRWZ",
+"name": "Prague Wizards"},
+}</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+    "success": false,
+    "data": "Wrong short format"
+}</code></pre>
+</div>

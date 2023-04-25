@@ -1,0 +1,92 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>More and more teams are starting to use your API. Some say that you should improve the service to add the results of individual quarters online so that users don't have to wait for the match to end. Some say that it is not necessary. You need to create an API in the second version. It is very important that despite the changes in the way you enter the results of matches, the old API works unchanged, presenting all added games so that no one has to modify their current system.</p>
+<p>That is why it is so important to indicate the version of your API. As you've noticed, we've assigned a version <code class="java">1</code> to our API from the beginning: <code class="java">/api/v1/games</code>. Thanks to this, the new version will have an intuitive name: <code class="java">/api/v2/games.</code></p>
+<h5 id="objectives"> Objectives</h5>
+<ol>
+<li>Extend the home page in HTML with three paragraphs: <code class="java">/api/v2/games POST add game</code>, <code class="java">/api/v2/games GET all game</code>, and <code class="java">/api/v2/games PATCH updated quarters</code>;</li>
+<li>In this stage, relate interim results of the quarters to the match. It will not be checked if you added a new column or made a related table or updated an existing table. You can even store those numbers in memory. It is up to you;</li>
+<li>Implement the <code class="java">POST</code> method at <code class="java">/api/v2/games</code> that will return the JSON object with the game <code class="java">id</code> in the format:  <code class="java">{"success": true, "data": INTEGER}</code> with the status code of <code class="java">200</code>. The passed JSON body should have the format: <code class="java">{ "home_team": &lt;SHORT NAME&gt;,  "visiting_team": &lt;SHORT NAME&gt;}</code>;</li>
+<li>The <code class="java">GET </code>method at <code class="java">/api/v2/games</code> should return all games in the JSON format like in example 6 with the status code <code class="java">200</code>;</li>
+<li>In the <code class="java">PATCH</code> method at <code class="java">/api/v2/games/%GAME.ID%</code>, implement a mechanism to add the interim score (quarters and overtime) to a game with the id passed in the address. The data is <code class="java">PATCH</code> in the following JSON format <code class="java">{"id": &lt;GAME ID&gt;, "quarters": "&lt;SCORE&gt;:&lt;SCORE&gt;"}</code><strong>. </strong>The request returns a JSON object with the status code 200 and the body <code class="java">{ "success": true,  "data": "Score updated"}</code> or when the <code class="java">&lt;GAME.ID&gt;</code> is wrong, return the status <code class="java">304</code> with the body <code class="java">{ 'success': false, 'data': 'There is no game with id &lt;GAME.ID&gt;' }</code>.</li>
+</ol>
+<p>All previous APIs should work as before.<strong> </strong>If the game has an interim score, return it in the second version of the API. The first version should work as before but return the sum of the interim scores (Example 5).</p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>the response for the home page should look like this</em></p>
+<h1 id="welcome-to-the-above-the-rim-api">Welcome to the "Above the Rim" API!</h1>
+<p>/api/v1/teams GET all teams</p>
+<p>/api/v1/teams POST add team</p>
+<p>/api/v1/games GET all games</p>
+<p>/api/v1/games POST add game</p>
+<p>/api/v1/team/&lt;SHORT&gt; GET a team statistics</p>
+<p>/api/v2/games POST add new game</p>
+<p>/api/v2/games GET all games</p>
+<p>/api/v2/games PUT updated <code class="java">quarters</code></p>
+<p><strong>Example 2:</strong> <em>response for a POST at /api/v2/games</em></p>
+<p><code class="java">POST</code>:</p>
+<pre><code class="java">{
+  "home_team": "PRW",
+  "visiting_team": "CHG"
+}</code></pre>
+<p>Response:</p>
+<pre><code class="java">{
+    "data": 3,
+    "success": true
+}</code></pre>
+<p><strong>Example 3:</strong> <em>response for a GET at /api/v2/games without added quarters</em></p>
+<pre><code class="java">{
+  "success": True,
+  "data":
+         {
+          "1": "Chicago Gulls 123:89 Prague Wizards",
+          "2": "Prague Wizards 76:67 Chicago Gulls",
+          "3": "Prague Wizards 0:0 Chicago Gulls"
+         }
+}</code></pre>
+<p><strong> Example 4: </strong><em>response to a PATCH at /api/v2/games</em></p>
+<p> <code class="java">POST</code>:</p>
+<pre><code class="java">{
+  "id": 3,
+  "quarters": "12:20"
+}</code></pre>
+<pre><code class="java">{
+  "id": 3,
+  "quarters": "21:12"
+}</code></pre>
+<p>Every response:</p>
+<pre><code class="java">{
+  "success": true,
+  "data": "Score updated"
+}</code></pre>
+<p><strong>Example 5: </strong><em>response for a<strong> </strong>GET at /api/v2/games</em></p>
+<pre><code class="java">{
+  "success": true,
+   "data":
+          {
+           "1": "Chicago Gulls 123:89 Prague Wizards",
+           "2": "Prague Wizards 76:67 Chicago Gulls",
+           "3": "Prague Wizards 33:32 Chicago Gulls"
+          }
+}</code></pre>
+<p><strong> Example 6: </strong><em>response for a<strong> </strong>GET at /api/v2/games after two updates</em></p>
+<pre><code class="java">{
+  "success": true,
+   "data":
+          {
+           "1": "Chicago Gulls 123:89 Prague Wizards",
+           "2": "Prague Wizards 76:67 Chicago Gulls",
+           "3": "Prague Wizards 33:32 Chicago Gulls (12:20,21:12)"
+          }
+}</code></pre>
+<p><strong>Example 7: </strong><em>response to a<strong> </strong>PATCH at /api/v2/games with the wrong game ID</em></p>
+<p><code class="java">POST</code>:</p>
+<pre><code class="java">{
+  "id": 6,
+  "quarters": "121:20"
+}</code></pre>
+<p>Response:</p>
+<pre><code class="java">{
+  'success': false,
+  'data': 'There is no game with id 6'
+}</code></pre>
+</div>
